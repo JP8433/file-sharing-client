@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import './App.css';
-import { uploadFile } from './service/api';
+import { useState, useEffect, useRef } from "react";
+import "./App.css";
+import { uploadFile } from "./service/api";
 
 function App() {
-  const [file, setFile] = useState('');
-  const [result, setResult] = useState('');
+  const [file, setFile] = useState("");
+  const [result, setResult] = useState("");
 
   const fileInputRef = useRef();
 
@@ -20,21 +20,21 @@ function App() {
         const response = await uploadFile(data);
         setResult(response.path);
       }
-    }
+    };
     getImage();
-  }, [file])
+  }, [file]);
 
   const onUploadClick = () => {
     fileInputRef.current.click();
-  }
+  };
 
   return (
-    <div className='container'>
+    <div className="container">
       {/* <img src={url} className='img' /> */}
-      <div className='wrapper'>
+      <div className="wrapper">
         <h1>File Sharing System!</h1>
         <p>Upload and share the downloaded link.</p>
-        
+
         <button onClick={() => onUploadClick()}>Upload</button>
         <input
           type="file"
@@ -43,7 +43,9 @@ function App() {
           onChange={(e) => setFile(e.target.files[0])}
         />
 
-        <a href={result} target='_blank'>{result}</a> 
+        <a href={result} rel="noreferrer" target="_blank">
+          {result}
+        </a>
       </div>
     </div>
   );
